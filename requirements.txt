@@ -1,0 +1,7 @@
+selenium
+chromedriver-autoinstaller
+urllib3
+webdriver_manager
+pandas
+openpyxl
+flet
