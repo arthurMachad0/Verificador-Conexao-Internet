@@ -25,6 +25,7 @@ ID_ACEITAR = 'onetrust-accept-btn-handler'
 CLASS_START_BTN = 'start-text'
 XPATH_RESULTADOS_DIV = '//div[@data-result-id]'
 CLASS_BOTAO_FECHAR_AVISO = 'close-btn'
+XPATH_BOTAO = '//*[@id="container"]/div[1]/div[3]/div/div/div/div[2]/div[2]/div/div[4]/div/div[8]/div/div/div[2]/a'
 
 class INTERNET:
     def __init__(self, headless=False) -> None:
@@ -81,11 +82,10 @@ class INTERNET:
             
             time.sleep(10)
             self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            # --- MODIFICAÇÃO PRINCIPAL ---
-            # Espera até que o botão de fechar esteja realmente pronto para ser clicado
+
             print("Aguardando o botão de fechar ser interativo...")
             botao_fechar = WebDriverWait(self.browser, 5).until(
-                EC.element_to_be_clickable((By.XPATH, '//*[@id="container"]/div[1]/div[3]/div/div/div/div[2]/div[2]/div/div[4]/div/div[8]/div/div/div[2]/a'))
+                EC.element_to_be_clickable((By.XPATH, XPATH_BOTAO )) 
             )
             
             botao_fechar.click()
@@ -98,9 +98,9 @@ class INTERNET:
             pass
         except ElementNotInteractableException:
             print("ERRO: O botão de fechar foi encontrado mas não é interativo. Tentando clicar com JavaScript...")
-            
+            # Plano B
             try:
-                botao_fechar = self.browser.find_element(By.XPATH, '//*[@id="container"]/div[1]/div[3]/div/div/div/div[2]/div[2]/div/div[4]/div/div[8]/div/div/div[2]/a')
+                botao_fechar = self.browser.find_element(By.XPATH, XPATH_BOTAO)
                 self.browser.execute_script("arguments[0].click();", botao_fechar)
                 print("Aviso fechado com sucesso via JavaScript.")
             except Exception as e:
@@ -128,6 +128,7 @@ class INTERNET:
             'Ping (ms)': ping,
         }
         self.info.append(info_extraida)
+
 
         tabela_temporaria = pd.DataFrame(self.info)
         print("Dados extraídos:")
