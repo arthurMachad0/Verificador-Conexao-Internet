@@ -1,4 +1,5 @@
 # Projeto de Automação Web: Verificação de Conexão de Internet via Speed Test
+ - Objetivo: aplicar automação web de maneira prática, sendo este um código onde pode auxiliar no cotidiano de todos os usuários de internet para manter um histórico registrado de informações básicas da qualidade do sinal de internet, caso por ventura precise realizar alguma reclamação com a empresa provedora do serviço, ou queira comparar qualidade e simplesmente trocar a empresa que utiliza em sua residência, trabalho, ou qualquer outro ambiuente de convívio;
  - automacao_pura.ipynb -> Código da automação pura (arquivo notebook) ;
  - main.py -> Código com interface gráfica (utilizando flet).
 
