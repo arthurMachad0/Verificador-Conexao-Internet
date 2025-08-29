@@ -98,7 +98,7 @@ class INTERNET:
             pass
         except ElementNotInteractableException:
             print("ERRO: O botão de fechar foi encontrado mas não é interativo. Tentando clicar com JavaScript...")
-            # Implementando a Solução 2 como um plano B
+            
             try:
                 botao_fechar = self.browser.find_element(By.XPATH, '//*[@id="container"]/div[1]/div[3]/div/div/div/div[2]/div[2]/div/div[4]/div/div[8]/div/div/div[2]/a')
                 self.browser.execute_script("arguments[0].click();", botao_fechar)
@@ -129,9 +129,6 @@ class INTERNET:
         }
         self.info.append(info_extraida)
 
-        # O navegador não será fechado aqui, pois a aplicação Flet precisa dele.
-        # self.browser.quit()
-
         tabela_temporaria = pd.DataFrame(self.info)
         print("Dados extraídos:")
         print(tabela_temporaria)
@@ -158,7 +155,6 @@ def main(page: ft.Page):
         resultados = internet.extract_data()
 
         # Exibe os resultados na interface
-        # Certifique-se de que 'resultados' é uma lista de dicionários, mesmo que contenha apenas um.
         if resultados and isinstance(resultados, list) and len(resultados) > 0:
             for chave, valor in resultados[0].items():
                 result_display.controls.append(ft.Text(f"{chave}: {valor}", size=16))
