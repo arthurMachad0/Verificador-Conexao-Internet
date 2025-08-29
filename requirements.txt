@@ -5,3 +5,4 @@ webdriver_manager
 pandas
 openpyxl
 flet
+pyinstaller
